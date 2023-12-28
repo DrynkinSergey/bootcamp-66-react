@@ -1,7 +1,7 @@
 import { Header } from './components/header/Header'
 import { Section } from './components/section/Section'
 
-function App() {
+const App = () => {
 	const moviesData = [
 		{ id: 1, title: 'Terminator' },
 		{ id: 2, title: 'Harry Potter' },
