@@ -1,11 +1,25 @@
+import { Header } from './components/header/Header'
+import { Section } from './components/section/Section'
+
 function App() {
+	const moviesData = [
+		{ id: 1, title: 'Terminator' },
+		{ id: 2, title: 'Harry Potter' },
+		{ id: 3, title: 'Taxi' },
+	]
+
+	const goodsData = [
+		{ id: '1', title: 'carrot' },
+		{ id: 'dsfas21j3sdfjakj132', title: 'potato' },
+		{ id: 3, title: 'milk' },
+		{ id: 4, title: 'water' },
+		{ id: 5, title: 'phone' },
+	]
 	return (
-		<div className='App'>
-			<header className='App-header'>
-				<a className='App-link' href='https://reactjs.org' target='_blank' rel='noopener noreferrer'>
-					Hello from React
-				</a>
-			</header>
+		<div>
+			<Header />
+			<Section title='Movies' data={moviesData} />
+			<Section title='Goods' data={goodsData} />
 		</div>
 	)
 }
