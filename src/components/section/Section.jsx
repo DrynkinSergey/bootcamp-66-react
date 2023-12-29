@@ -1,10 +1,10 @@
-export const Section = props => {
-	console.log(props)
+export const Section = ({ title = 'Default section name', data = [] }) => {
+	console.log(title, data)
 	return (
 		<section>
-			<h2>{props.title}</h2>
+			<h2>{title}</h2>
 			<ul>
-				{props.data.map(item => (
+				{data.map(item => (
 					<li key={item.id}>{item.title}</li>
 				))}
 			</ul>
