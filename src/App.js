@@ -1,12 +1,11 @@
 import { Header } from './components/header/Header'
 import { Section } from './components/section/Section'
 import { Wrapper } from './components/wrapper/Wrapper'
-
 import userData from './assets/user.json'
 import { UserCard } from './components/userCard/UserCard'
+import './index.css'
 
 const App = () => {
-	console.log(userData)
 	const moviesData = [
 		{ id: 1, title: 'Terminator' },
 		{ id: 2, title: 'Harry Potter' },
@@ -25,6 +24,8 @@ const App = () => {
 	return (
 		<div>
 			<Header message='Hello' />
+
+			<h2 className='title'>Welcome to React JS</h2>
 			<Section title='Movies' data={moviesData} />
 			<Section title='Goods' data={goodsData} />
 			{/* <Section data={goodsData} /> */}
@@ -32,11 +33,9 @@ const App = () => {
 			{isOnline ? <h1>User is Online</h1> : <h1>User is offline</h1>}
 			{isOnline && <h2>Only when user is online</h2>}
 			{!isOnline && <h2>Only render when user is offline</h2>}
-
 			<hr />
 			<UserCard user={userData} />
 			<hr />
-
 			<Wrapper>
 				<p>
 					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore error suscipit iste maiores excepturi,
@@ -52,7 +51,6 @@ const App = () => {
 					<li>2 роки гарантії</li>
 				</ul>
 			</Wrapper>
-
 			<Wrapper>
 				<Section title='Movies' data={moviesData} />
 			</Wrapper>
