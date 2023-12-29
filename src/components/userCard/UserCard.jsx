@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import s from './UserCard.module.css'
+
 export const UserCard = ({ user }) => {
 	const { age, lastName, firstName, email, image, phone, address } = user
 	return (

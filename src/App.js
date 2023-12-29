@@ -4,6 +4,9 @@ import { Wrapper } from './components/wrapper/Wrapper'
 import userData from './assets/user.json'
 import { UserCard } from './components/userCard/UserCard'
 import './index.css'
+import { UserCardStyled } from './components/userCard/UserCardStyled'
+import { Button } from './components/button/Button'
+import { FlexContainer } from './styles/Shared'
 
 const App = () => {
 	const moviesData = [
@@ -26,6 +29,14 @@ const App = () => {
 			<Header message='Hello' />
 
 			<h2 className='title'>Welcome to React JS</h2>
+			<FlexContainer $gap='100px'>
+				<Button $bg='pink'>Click me!</Button>
+				<Button $border $bg='green'>
+					Submit
+				</Button>
+				<Button $bg='red'>Cancel</Button>
+			</FlexContainer>
+
 			<Section title='Movies' data={moviesData} />
 			<Section title='Goods' data={goodsData} />
 			{/* <Section data={goodsData} /> */}
@@ -35,6 +46,9 @@ const App = () => {
 			{!isOnline && <h2>Only render when user is offline</h2>}
 			<hr />
 			<UserCard user={userData} />
+			<hr />
+			<hr />
+			<UserCardStyled user={userData} />
 			<hr />
 			<Wrapper>
 				<p>
