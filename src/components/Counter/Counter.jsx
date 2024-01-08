@@ -8,20 +8,10 @@ export class Counter extends React.Component {
 	}
 
 	handlePlusClick = () => {
-		// this.state.counter = 2 - Не можна напраму змінювати стейт!!!
-
-		// Відображення в консолі теперішнього стану лічильника за допомоги колбека як другого аргумента!
-		// this.setState({ counter: this.state.counter + 1 }, () => console.log(this.state.counter))
-
-		// this.setState({ counter: this.state.counter + 1 })
-		// this.setState({ counter: this.state.counter + 1 })
-		// this.setState({ counter: this.state.counter + 1 })
-
 		this.setState(prevState => ({ counter: prevState.counter + prevState.step }))
 	}
 
 	handleMinusClick = () => {
-		// this.setState({ counter: this.state.counter - 1 })
 		this.setState(prevState => ({ counter: prevState.counter - prevState.step }))
 	}
 
@@ -45,18 +35,3 @@ export class Counter extends React.Component {
 		)
 	}
 }
-
-// export const Counter = () => {
-// return (
-// 	<FlexContainer>
-// 		<StyledCounter>
-// 			<h1>{0}</h1>
-// 			<Flex>
-// 				<StyledButton>minus</StyledButton>
-// 				<StyledButton>reset</StyledButton>
-// 				<StyledButton>plus</StyledButton>
-// 			</Flex>
-// 		</StyledCounter>
-// 	</FlexContainer>
-// )
-// }
