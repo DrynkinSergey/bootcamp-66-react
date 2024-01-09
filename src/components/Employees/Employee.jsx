@@ -12,9 +12,6 @@ export class Employee extends React.Component {
 		activeSkill: 'all',
 	}
 
-	// Мені треба створити функцію для видалення користувача. Я маю знайти певного користувача по ідентифікатору
-	// Зробити функцію для фільтрації користувачів. Зв'язати інпут до стейту
-
 	handleChangeActiveSkill = skill => {
 		this.setState({ activeSkill: skill })
 	}
@@ -31,7 +28,6 @@ export class Employee extends React.Component {
 	}
 
 	handleDeleteUser = id => {
-		console.log(id)
 		this.setState(prevState => ({ users: prevState.users.filter(user => user.id !== id) }))
 	}
 
@@ -55,11 +51,3 @@ export class Employee extends React.Component {
 		)
 	}
 }
-// export const Employee = () => {
-// return (
-// 	<>
-// 		<EmployeesFilter />
-// 		<EmployeeList users={userData} />
-// 	</>
-// )
-// }

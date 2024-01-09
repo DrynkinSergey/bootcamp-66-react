@@ -17,7 +17,6 @@ export class TodoList extends Component {
 	}
 
 	handleChangeInput = e => {
-		console.log(e.target.value)
 		this.setState({ newTodoText: e.target.value })
 	}
 
