@@ -14,6 +14,7 @@ export const App = () => {
 	return (
 		<>
 			{/* <Employee /> */}
+			<RegisterForm register={register} />
 			<RegisterFormUncontrolled register={register} />
 		</>
 	)
