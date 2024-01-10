@@ -1,6 +1,6 @@
 import { CloseButton, ModalContent, ModalWrapper } from './Modal.styled'
 
-const Modal = ({ children }) => {
+const Modal = ({ children, close }) => {
 	return (
 		<ModalWrapper>
 			<ModalContent>
@@ -8,7 +8,7 @@ const Modal = ({ children }) => {
 					<h1>Modal</h1>
 					<hr />
 				</>
-				<CloseButton>×</CloseButton>
+				<CloseButton onClick={close}>×</CloseButton>
 				{children}
 			</ModalContent>
 		</ModalWrapper>

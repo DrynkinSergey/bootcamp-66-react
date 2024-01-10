@@ -4,6 +4,7 @@ import React from 'react'
 import { getFilteredData } from '../../helpers/getFilteredData'
 import { EmployeeList } from './EmployeeList'
 import { toast } from 'react-toastify'
+import Modal from '../Modal/Modal'
 
 export class Employee extends React.Component {
 	state = {
@@ -11,6 +12,7 @@ export class Employee extends React.Component {
 		filterStr: '',
 		isAvailable: false,
 		activeSkill: 'all',
+		isOpen: false,
 	}
 
 	componentDidMount() {
@@ -25,6 +27,14 @@ export class Employee extends React.Component {
 			toast.info('Users were changed')
 			localStorage.setItem('USERS_DATA', JSON.stringify(this.state.users))
 		}
+	}
+
+	// Methods for modal
+	handleOpenModal = () => {
+		this.setState({ isOpen: true })
+	}
+	handleCloseModal = () => {
+		this.setState({ isOpen: false })
 	}
 
 	handleChangeActiveSkill = skill => {
@@ -61,6 +71,18 @@ export class Employee extends React.Component {
 					activeSkill={activeSkill}
 					isAvailable={isAvailable}
 				/>
+				<button onClick={this.handleOpenModal}>Open MODAL</button>
+				{this.state.isOpen && (
+					<Modal close={this.handleCloseModal}>
+						<h1>Продам холодильник!</h1>
+						<img
+							src='https://content.rozetka.com.ua/goods/images/big/277445401.jpg'
+							alt='fridge'
+							width={400}
+							height={500}
+						/>
+					</Modal>
+				)}
 				<EmployeeList users={filteredUsers} onDeleteUser={this.handleDeleteUser} />
 			</>
 		)
