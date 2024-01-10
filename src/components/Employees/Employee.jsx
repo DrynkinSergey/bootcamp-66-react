@@ -1,8 +1,8 @@
 import { EmployeesFilter } from './EmployeesFilter'
-import { EmployeeList } from './EmployeeList'
 import userData from './../../assets/users.json'
 import React from 'react'
 import { getFilteredData } from '../../helpers/getFilteredData'
+import { EmployeeList } from './EmployeeList'
 
 export class Employee extends React.Component {
 	state = {

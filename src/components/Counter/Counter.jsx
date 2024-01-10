@@ -1,10 +1,17 @@
 import React from 'react'
 import { Flex, FlexContainer, StyledButton, StyledCounter } from './Counter.styled'
+import { toast } from 'react-toastify'
 
 export class Counter extends React.Component {
 	state = {
 		counter: 0,
 		step: 1,
+	}
+
+	componentDidMount() {
+		console.log('Компонент змонтовано')
+		toast.success('Hello, world!')
+		this.setState({ counter: 31 })
 	}
 
 	handlePlusClick = () => {
