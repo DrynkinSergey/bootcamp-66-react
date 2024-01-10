@@ -7,9 +7,9 @@ import './index.css'
 export const App = () => {
 	return (
 		<>
-			{/* <Employee /> */}
+			<Employee />
 			{/* <TodoList /> */}
-			<Counter />
+			{/* <Counter /> */}
 		</>
 	)
 }

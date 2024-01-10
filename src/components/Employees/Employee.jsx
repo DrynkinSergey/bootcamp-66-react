@@ -3,6 +3,7 @@ import userData from './../../assets/users.json'
 import React from 'react'
 import { getFilteredData } from '../../helpers/getFilteredData'
 import { EmployeeList } from './EmployeeList'
+import { toast } from 'react-toastify'
 
 export class Employee extends React.Component {
 	state = {
@@ -10,6 +11,20 @@ export class Employee extends React.Component {
 		filterStr: '',
 		isAvailable: false,
 		activeSkill: 'all',
+	}
+
+	componentDidMount() {
+		const users = JSON.parse(localStorage.getItem('USERS_DATA'))
+		if (users?.length) {
+			this.setState({ users })
+		}
+	}
+
+	componentDidUpdate(_, prevState) {
+		if (prevState.users.length !== this.state.users.length) {
+			toast.info('Users were changed')
+			localStorage.setItem('USERS_DATA', JSON.stringify(this.state.users))
+		}
 	}
 
 	handleChangeActiveSkill = skill => {
