@@ -80,7 +80,7 @@ export class Employee extends React.Component {
 				{this.state.isOpen && (
 					<Modal title={this.state.modalContent.name} close={this.handleCloseModal}>
 						<h1>{this.state.modalContent.bio}</h1>
-						<h2>{this.state.modalContent.isOpenToWork ? 'хоче працювати' : ' не хоче працювати'}</h2>
+						<h2>{this.state.modalContent.isOpenToWork ? 'хоче працювати' : 'не хоче працювати'}</h2>
 					</Modal>
 				)}
 				{/* {this.state.isOpen && (
