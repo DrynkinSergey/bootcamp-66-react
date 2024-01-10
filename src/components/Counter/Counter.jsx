@@ -6,12 +6,28 @@ export class Counter extends React.Component {
 	state = {
 		counter: 0,
 		step: 1,
+		test: 0,
 	}
 
 	componentDidMount() {
 		console.log('Компонент змонтовано')
 		toast.success('Hello, world!')
-		this.setState({ counter: 31 })
+		// this.setState({ counter: 31 })
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		console.log('Компонент оновився')
+		if (prevState.counter !== this.state.counter) {
+			toast.info('Update counter field')
+			this.setState({ test: this.state.test + 1 })
+		}
+
+		if (prevState.step !== this.state.step) {
+			toast.warn('Update step')
+		}
+		if (prevState.counter === 5) {
+			toast.error('Counter equal 5')
+		}
 	}
 
 	handlePlusClick = () => {
