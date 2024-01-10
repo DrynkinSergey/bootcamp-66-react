@@ -13,6 +13,7 @@ export class Employee extends React.Component {
 		isAvailable: false,
 		activeSkill: 'all',
 		isOpen: false,
+		modalContent: null,
 	}
 
 	componentDidMount() {
@@ -35,6 +36,10 @@ export class Employee extends React.Component {
 	}
 	handleCloseModal = () => {
 		this.setState({ isOpen: false })
+	}
+
+	handleSetModalContent = content => {
+		this.setState({ isOpen: true, modalContent: content })
 	}
 
 	handleChangeActiveSkill = skill => {
@@ -73,6 +78,12 @@ export class Employee extends React.Component {
 				/>
 				<button onClick={this.handleOpenModal}>Open MODAL</button>
 				{this.state.isOpen && (
+					<Modal title={this.state.modalContent.name} close={this.handleCloseModal}>
+						<h1>{this.state.modalContent.bio}</h1>
+						<h2>{this.state.modalContent.isOpenToWork ? 'хоче працювати' : ' не хоче працювати'}</h2>
+					</Modal>
+				)}
+				{/* {this.state.isOpen && (
 					<Modal close={this.handleCloseModal}>
 						<h1>Продам холодильник!</h1>
 						<img
@@ -82,8 +93,12 @@ export class Employee extends React.Component {
 							height={500}
 						/>
 					</Modal>
-				)}
-				<EmployeeList users={filteredUsers} onDeleteUser={this.handleDeleteUser} />
+				)} */}
+				<EmployeeList
+					users={filteredUsers}
+					onDeleteUser={this.handleDeleteUser}
+					openModalWithContent={this.handleSetModalContent}
+				/>
 			</>
 		)
 	}

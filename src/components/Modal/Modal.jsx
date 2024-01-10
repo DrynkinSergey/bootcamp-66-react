@@ -44,12 +44,12 @@ class Modal extends React.Component {
 	}
 
 	render() {
-		const { close, children } = this.props
+		const { close, children, title = 'Modal' } = this.props
 		return (
 			<ModalWrapper onClick={this.handleClickOnBackdrop}>
 				<ModalContent>
 					<>
-						<h1>Modal</h1>
+						<h1>{title}</h1>
 						<hr />
 					</>
 					<CloseButton onClick={close}>×</CloseButton>
