@@ -2,14 +2,16 @@ import React from 'react'
 import { Employee } from './components/Employees/Employee'
 import { TodoList } from './components/TodoList/TodoList'
 import { Counter } from './components/Counter/Counter'
-
+import { ColorPicker } from './components/ColorPicker/ColorPicker'
+import colors from './assets/colors.json'
 import './index.css'
 export const App = () => {
 	return (
 		<>
-			<Employee />
+			{/* <Employee /> */}
 			{/* <TodoList /> */}
 			{/* <Counter /> */}
+			<ColorPicker colors={colors} />
 		</>
 	)
 }

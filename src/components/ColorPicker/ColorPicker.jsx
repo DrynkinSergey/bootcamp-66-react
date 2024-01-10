@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
 import { StyledBackgroundTheme, StyledColorPalette, StyledColor, StyledColorsList } from './ColorPicker.styled'
 
-export class ColorPicker extends Component {
+export class ColorPicker extends PureComponent {
 	// Якщо ми не передамо пропс кольорів - буде використано цей об'єкт
 	static defaultProps = {
 		colors: [{ id: 1, color: 'blue' }],
@@ -9,6 +9,14 @@ export class ColorPicker extends Component {
 
 	state = {
 		currentColor: 'white',
+	}
+
+	// shouldComponentUpdate(nextProps, nextState) {
+	// 	return nextState.currentColor !== this.state.currentColor
+	// }
+
+	componentDidUpdate(prevProps, prevState) {
+		console.log('Update: ', this.state.currentColor)
 	}
 
 	handlePickColor = color => {
