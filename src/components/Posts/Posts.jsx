@@ -18,6 +18,7 @@ export default class Posts extends Component {
 		isOpen: false,
 		modalContent: null,
 	}
+
 	async componentDidMount() {
 		try {
 			this.setState({ loading: true, error: null })
@@ -31,7 +32,36 @@ export default class Posts extends Component {
 			this.setState({ loading: false })
 		}
 	}
-	async componentDidUpdate(prevProps, prevState) {
+
+	// Крок перший. Створюємо реф (посилання на елемент)
+	scrollRef = React.createRef(null)
+
+	// Крок другий. Пишемо метод getSnapshot
+	getSnapshotBeforeUpdate(prevProps, prevState) {
+		// Перевіряємо чи змінилась довжина массиву постів
+		if (prevState.items.length !== this.state.items.length) {
+			// Якщо так, створюємо скролл позішн та відміряємо висоту екрану
+			const scrollPosition = this.scrollRef.current.offsetTop
+			// Повертаємо скролл позишн
+			return { scrollPosition }
+		}
+		//Інакше повертаємо null
+		return null
+	}
+
+	// Крок третій. Приймаємо третім аргументом снепшот
+	async componentDidUpdate(prevProps, prevState, snapshot) {
+		// перевіряємо чи є снепшот та наші дані
+		if (snapshot && prevState.items.length) {
+			// якщо дані є то скролимо донизу нашу сторінку, вимірюємо довжину потрібну для скролла (420)
+			const scrollPosition = this.scrollRef.current.offsetTop - 420
+			// Сам скролл
+			window.scrollTo({
+				top: scrollPosition,
+				behavior: 'smooth',
+			})
+		}
+
 		const { skip, query } = this.state
 		if (prevState.skip !== skip || prevState.query !== query) {
 			try {
@@ -71,14 +101,6 @@ export default class Posts extends Component {
 			this.setState({ modalContent: this.state.items[item + 1] })
 		}
 	}
-	// handlePrevPost = id => {
-	// 	const item = this.state.items.findIndex(post => post.id === id)
-	// 	if (item === 0) {
-	// 		this.setState({ modalContent: this.state.items[this.state.length - 1] })
-	// 	} else {
-	// 		this.setState({ modalContent: this.state.items[item - 1] })
-	// 	}
-	// }
 
 	render() {
 		const { items, loading, error, totalItems, isOpen, modalContent } = this.state
@@ -93,6 +115,8 @@ export default class Posts extends Component {
 
 				{error && <h2>Smth went wrong!!</h2>}
 
+				{/* Робимо скритий дів до цього місця буде йти скролл */}
+				<div ref={this.scrollRef} style={{ visibility: 'hidden' }}></div>
 				{items.length && items.length < totalItems && (
 					<button onClick={this.handleLoadMore} className={s.loadBtn}>
 						Load more
