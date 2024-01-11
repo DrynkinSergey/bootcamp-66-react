@@ -1,7 +1,8 @@
 
+:root{
+  --shadow:  2px 2px 3px 2px gray;
+}
 body {
-
-  
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
