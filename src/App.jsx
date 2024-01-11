@@ -9,9 +9,9 @@ export const App = () => {
 	return (
 		<>
 			{/* <Employee /> */}
-			{/* <TodoList /> */}
+			<TodoList />
 			{/* <Counter /> */}
-			<ColorPicker colors={colors} />
+			{/* <ColorPicker colors={colors} /> */}
 		</>
 	)
 }
