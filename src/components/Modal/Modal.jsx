@@ -8,13 +8,13 @@ class Modal extends React.Component {
 	componentDidMount() {
 		document.addEventListener('keydown', this.handleKeyDown)
 
-		this.timeoutID = setTimeout(() => {
-			console.log('Badabum!')
-		}, 3000)
+		// this.timeoutID = setTimeout(() => {
+		// 	console.log('Badabum!')
+		// }, 3000)
 
-		this.intervalID = setInterval(() => {
-			console.log(new Date().toLocaleTimeString())
-		}, 1000)
+		// this.intervalID = setInterval(() => {
+		// 	console.log(new Date().toLocaleTimeString())
+		// }, 1000)
 	}
 
 	componentWillUnmount() {
