@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Flex, FlexContainer, StyledButton, StyledCounter } from './Counter.styled'
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import { MyContext } from '../../App'
 
 export const Counter = () => {
 	const [counter, setCounter] = useState(0)
 	const [step, setStep] = useState(1)
-
+	const { message, colors } = useContext(MyContext)
+	console.log(colors)
 	useEffect(() => {
 		console.log('Hello world!')
 		toast.success('hello')
@@ -42,6 +44,7 @@ export const Counter = () => {
 	return (
 		<FlexContainer>
 			<StyledCounter>
+				<h2>{message}</h2>
 				<h1>{counter}</h1>
 				<input value={step} onChange={e => setStep(+e.target.value)} />
 				<Flex>
