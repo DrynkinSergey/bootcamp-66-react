@@ -1,18 +1,41 @@
 import { EmployeesFilter } from './EmployeesFilter'
 import userData from './../../assets/users.json'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { getFilteredData } from '../../helpers/getFilteredData'
 import { EmployeeList } from './EmployeeList'
 import { toast } from 'react-toastify'
 import Modal from '../Modal/Modal'
 
 export const Employee = () => {
-	const [users, setUsers] = useState(userData)
+	const [users, setUsers] = useState(() => {
+		const users = JSON.parse(localStorage.getItem('USERS_DATA'))
+		if (users?.length) {
+			return users
+		}
+		return userData
+	})
+
 	const [filterStr, setFilterStr] = useState('')
 	const [isAvailable, setIsAvailable] = useState(false)
 	const [activeSkill, setActiveSkill] = useState('all')
 	const [isOpen, setIsOpen] = useState(false)
 	const [modalContent, setModalContent] = useState(null)
+
+	// useEffect(() => {
+	// 	const users = JSON.parse(localStorage.getItem('USERS_DATA'))
+	// 	if (users?.length) {
+	// 		setUsers(users)
+	// 	}
+	// }, []) - Не правильно, буде 2 рендери та смикання інтерфейсу
+
+	useEffect(() => {
+		toast.info('Users saved')
+		// console.log(JSON.parse(null))
+		if ({ user: 'asdfasd' }?.length) {
+			console.log('test')
+		}
+		localStorage.setItem('USERS_DATA', JSON.stringify(users))
+	}, [users])
 
 	const handleOpenModal = () => {
 		// this.setState({ isOpen: true })
@@ -99,6 +122,7 @@ export const Employee = () => {
 // 	}
 
 // 	componentDidUpdate(_, prevState) {
+
 // 		if (prevState.users.length !== this.state.users.length) {
 // 			toast.info('Users were changed')
 // 			localStorage.setItem('USERS_DATA', JSON.stringify(this.state.users))

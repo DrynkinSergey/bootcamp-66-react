@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Flex, FlexContainer, StyledButton, StyledCounter } from './Counter.styled'
 import { toast } from 'react-toastify'
 import axios from 'axios'
@@ -6,6 +6,24 @@ import axios from 'axios'
 export const Counter = () => {
 	const [counter, setCounter] = useState(0)
 	const [step, setStep] = useState(1)
+
+	useEffect(() => {
+		console.log('Hello world!')
+		toast.success('hello')
+	}, [])
+
+	useEffect(() => {
+		console.log('Counter has been changed')
+	}, [counter])
+
+	useEffect(() => {
+		console.log('Step was changed')
+	}, [step])
+
+	useEffect(() => {
+		console.log('Step or Counter changed')
+	}, [step, counter])
+
 	const handlePlusClick = () => {
 		// this.setState(prevState => ({ counter: prevState.counter + prevState.step }))
 		setCounter(prev => prev + step)
