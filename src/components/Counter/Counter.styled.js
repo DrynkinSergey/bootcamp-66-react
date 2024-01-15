@@ -13,7 +13,7 @@ export const StyledButton = styled.button`
 	border-radius: 4px;
 	border: none;
 	font-size: ${props => props.$size || '2rem'};
-	background-color: white;
+	background-color: black;
 	transition: all 0.2s ease-in-out;
 	cursor: pointer;
 

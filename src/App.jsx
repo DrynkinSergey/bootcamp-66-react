@@ -10,11 +10,11 @@ import Posts from './components/Posts/Posts'
 export const App = () => {
 	return (
 		<>
+			<Counter />
+			{/* <ColorPicker colors={colors} /> */}
 			{/* <Employee /> */}
 			{/* <TodoList /> */}
-			{/* <Counter /> */}
-			{/* <ColorPicker colors={colors} /> */}
-			<Posts />
+			{/* <Posts /> */}
 		</>
 	)
 }
