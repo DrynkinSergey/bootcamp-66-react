@@ -6,21 +6,15 @@ import { ColorPicker } from './components/ColorPicker/ColorPicker'
 import colors from './assets/colors.json'
 import './index.css'
 import Posts from './components/Posts/Posts'
+import { Header } from './components/Header/Header'
 
-export const MyContext = createContext()
-export const MyContext2 = createContext()
 export const App = () => {
 	const message = 'hello'
 	return (
 		<>
-			{/* <ColorPicker colors={colors} /> */}
-			{/* <Employee /> */}
-			{/* <TodoList /> */}
-
-			<MyContext.Provider value={{ car: 'Audi rs6', message: 'Hello context', colors }}>
-				<Posts message={message} />
-				<Counter />
-			</MyContext.Provider>
+			<Header />
+			<Posts message={message} />
+			<Counter />
 		</>
 	)
 }

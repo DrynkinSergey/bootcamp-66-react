@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react'
+import React, { Component, useContext, useEffect, useState } from 'react'
 import { SearchForm } from './SearchForm'
 import { PostList } from './PostList'
 import s from './Posts.module.scss'
@@ -6,6 +6,7 @@ import { fetchPosts, fetchPostsByQuery } from '../../services/api'
 import { Loader } from './Loader'
 import { toast } from 'react-toastify'
 import Modal from '../Modal/Modal'
+import { UserContext } from '../../context/ContextProvider'
 
 const Posts = ({ message }) => {
 	const [items, setItems] = useState([])
@@ -17,6 +18,8 @@ const Posts = ({ message }) => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [modalContent, setModalContent] = useState(null)
 
+	const { isLoggedIn, data } = useContext(UserContext)
+	console.log(data)
 	useEffect(() => {
 		const getData = async () => {
 			try {
@@ -61,6 +64,9 @@ const Posts = ({ message }) => {
 	}
 
 	const handleOpenModal = content => {
+		if (!isLoggedIn) {
+			return toast.info('Access denied! Please login!')
+		}
 		setModalContent(content)
 		setIsOpen(true)
 		// this.setState({ modalContent: content, isOpen: true })
