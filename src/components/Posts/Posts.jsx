@@ -1,4 +1,4 @@
-import React, { Component, useCallback, useContext, useEffect, useRef, useState } from 'react'
+import React, { Component, useCallback, useContext, useEffect, useRef, useState, useReducer } from 'react'
 import { SearchForm } from './SearchForm'
 import { PostList } from './PostList'
 import s from './Posts.module.scss'
@@ -7,36 +7,28 @@ import { Loader } from './Loader'
 import { toast } from 'react-toastify'
 import Modal from '../Modal/Modal'
 import { UserContext } from '../../context/ContextProvider'
+import { initialState, postsReducer } from '../../reducer/posts/reducer'
+import { actionTypes } from '../../reducer/posts/actionTypes'
+import { actions, changeSkip, nextPost, openModalContent, toggleModal } from '../../reducer/posts/actions'
 
 const Posts = ({ message }) => {
-	const [items, setItems] = useState([])
-	const [skip, setSkip] = useState(0)
-	const [loading, setLoading] = useState(false)
-	const [error, setError] = useState(null)
-	const [query, setQuery] = useState('')
-	const [totalItems, setTotalItems] = useState(0)
-	const [isOpen, setIsOpen] = useState(false)
-	const [modalContent, setModalContent] = useState(null)
+	const [state, dispatch] = useReducer(postsReducer, initialState)
+
+	const { items, skip, loading, error, query, totalItems, isOpen, modalContent } = state
 
 	const { isLoggedIn, data } = useContext(UserContext)
 
 	const getData = useCallback(async () => {
 		try {
-			// this.setState({ loading: true, error: null })
-			setLoading(true)
-			setError(null)
+			dispatch({ type: actionTypes.LOADING_START })
 			const { posts, total } = query
 				? await fetchPostsByQuery({ limit: 6, skip, q: query })
 				: await fetchPosts({ limit: 6, skip })
-			// this.setState(prev => ({ items: [...prev.items, ...posts], totalItems: total }))
-			setItems(prev => [...prev, ...posts])
-			setTotalItems(total)
+			dispatch({ type: actionTypes.FETCHING_DONE, payload: { posts, total } })
 		} catch (error) {
-			// this.setState({ error })
-			setError(error)
+			dispatch({ type: actionTypes.SET_ERROR, payload: error })
 		} finally {
-			setLoading(false)
-			// this.setState({ loading: false })
+			dispatch({ type: actionTypes.LOADING_END })
 		}
 	}, [query, skip])
 
@@ -53,36 +45,29 @@ const Posts = ({ message }) => {
 	}, [getData])
 
 	const handleSetQuery = query => {
-		// this.setState({ query, items: [], skip: 0 })
-		setQuery(query)
-		setItems([])
-		setSkip(0)
+		dispatch({ type: actionTypes.CHANGE_QUERY, payload: query })
 	}
 
 	const handleLoadMore = () => {
-		// this.setState(prev => ({ skip: prev.skip + 6 }))
-		setSkip(prev => prev + 6)
+		dispatch(changeSkip())
 	}
 
 	const handleToggleModal = () => {
-		// this.setState(prev => ({ isOpen: !prev.isOpen }))
-		setIsOpen(prev => !prev)
+		dispatch(toggleModal())
 	}
 
 	const handleOpenModal = content => {
 		if (!isLoggedIn) {
 			return toast.info('Access denied! Please login!')
 		}
-		setModalContent(content)
-		setIsOpen(true)
-		// this.setState({ modalContent: content, isOpen: true })
+		dispatch(openModalContent(content))
 	}
 	const handleNextPost = id => {
 		const item = items.findIndex(post => post.id === id)
 		if (item === items.length - 1) {
-			setModalContent(items[0])
+			dispatch(nextPost(items[0]))
 		} else {
-			setModalContent(items[item + 1])
+			dispatch(nextPost(items[item + 1]))
 		}
 	}
 	return (
