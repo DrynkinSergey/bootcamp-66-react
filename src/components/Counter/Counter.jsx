@@ -1,45 +1,38 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { Flex, FlexContainer, StyledButton, StyledCounter } from './Counter.styled'
 import { toast } from 'react-toastify'
 
 export const Counter = () => {
 	const [counter, setCounter] = useState(0)
 	const [step, setStep] = useState(1)
-	useEffect(() => {
-		console.log('Hello world!')
-		toast.success('hello')
-	}, [])
 
-	useEffect(() => {
-		console.log('Counter has been changed')
-	}, [counter])
+	const calcHardValue = step => {
+		console.log('start calc')
+		for (let i = 1; i < 1_000_000_000; i++) {}
+		console.log('end calc')
+		return 2 * step
+	}
 
-	useEffect(() => {
-		console.log('Step was changed')
+	// const result = calcHardValue()
+	const result = useMemo(() => {
+		return calcHardValue(step)
 	}, [step])
-
-	useEffect(() => {
-		console.log('Step or Counter changed')
-	}, [step, counter])
-
 	const handlePlusClick = () => {
-		// this.setState(prevState => ({ counter: prevState.counter + prevState.step }))
 		setCounter(prev => prev + step)
 	}
 
 	const handleMinusClick = () => {
-		// this.setState(prevState => ({ counter: prevState.counter - prevState.step }))
 		setCounter(prev => prev - step)
 	}
 
 	const handleReset = () => {
-		// this.setState({ counter: 0, step: 1 })
 		setCounter(0)
 		setStep(1)
 	}
 	return (
 		<FlexContainer>
 			<StyledCounter>
+				<h2>Res:{result}</h2>
 				<h1>{counter}</h1>
 				<input value={step} onChange={e => setStep(+e.target.value)} />
 				<Flex>

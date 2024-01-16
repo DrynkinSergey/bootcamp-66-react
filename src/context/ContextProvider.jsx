@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useCallback, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 
 export const UserContext = createContext()
@@ -12,17 +12,18 @@ export const ContextProvider = ({ children }) => {
 		axios.get('https://dummyjson.com/users').then(res => setData(res.data.users))
 	}, [])
 
-	const login = name => {
+	const login = useCallback(name => {
 		if (name !== 'admin') {
 			return toast.error('Data is not valid')
 		}
 		setUser(name)
 		setIsLoggedIn(true)
-	}
-	const logout = () => {
+	}, [])
+
+	const logout = useCallback(() => {
 		setUser('')
 		setIsLoggedIn(false)
-	}
+	}, [])
 
 	const contextValue = {
 		login,

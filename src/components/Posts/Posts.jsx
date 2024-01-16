@@ -1,4 +1,4 @@
-import React, { Component, useContext, useEffect, useState } from 'react'
+import React, { Component, useCallback, useContext, useEffect, useState } from 'react'
 import { SearchForm } from './SearchForm'
 import { PostList } from './PostList'
 import s from './Posts.module.scss'
@@ -19,32 +19,30 @@ const Posts = ({ message }) => {
 	const [modalContent, setModalContent] = useState(null)
 
 	const { isLoggedIn, data } = useContext(UserContext)
-	console.log(data)
-	useEffect(() => {
-		const getData = async () => {
-			try {
-				// this.setState({ loading: true, error: null })
-				setLoading(true)
-				setError(null)
-				const { posts, total } = query
-					? await fetchPostsByQuery({ limit: 6, skip, q: query })
-					: await fetchPosts({ limit: 6, skip })
-				// this.setState(prev => ({ items: [...prev.items, ...posts], totalItems: total }))
-				setItems(prev => [...prev, ...posts])
-				setTotalItems(total)
-			} catch (error) {
-				// this.setState({ error })
-				setError(error)
-			} finally {
-				setLoading(false)
-				// this.setState({ loading: false })
-			}
+
+	const getData = useCallback(async () => {
+		try {
+			// this.setState({ loading: true, error: null })
+			setLoading(true)
+			setError(null)
+			const { posts, total } = query
+				? await fetchPostsByQuery({ limit: 6, skip, q: query })
+				: await fetchPosts({ limit: 6, skip })
+			// this.setState(prev => ({ items: [...prev.items, ...posts], totalItems: total }))
+			setItems(prev => [...prev, ...posts])
+			setTotalItems(total)
+		} catch (error) {
+			// this.setState({ error })
+			setError(error)
+		} finally {
+			setLoading(false)
+			// this.setState({ loading: false })
 		}
-		getData()
-		;(() => {
-			console.log('a + b')
-		})() // IIFE
 	}, [query, skip])
+
+	useEffect(() => {
+		getData()
+	}, [getData])
 
 	const handleSetQuery = query => {
 		// this.setState({ query, items: [], skip: 0 })
