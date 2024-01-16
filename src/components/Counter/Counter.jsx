@@ -1,10 +1,19 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { Flex, FlexContainer, StyledButton, StyledCounter } from './Counter.styled'
 import { toast } from 'react-toastify'
 
 export const Counter = () => {
 	const [counter, setCounter] = useState(0)
 	const [step, setStep] = useState(1)
+	const [stateCounter, setStateCounter] = useState(0)
+	const renderRef = useRef(0)
+	useEffect(() => {
+		renderRef.current++
+		console.log('Render count:', renderRef.current)
+		// setStateCounter(prev => prev + 1)
+		// console.log('Render count:', stateCounter)
+	}, [])
+	const buttonRef = useRef(null)
 
 	const calcHardValue = step => {
 		console.log('start calc')
@@ -38,7 +47,9 @@ export const Counter = () => {
 				<Flex>
 					<StyledButton onClick={handleMinusClick}>minus</StyledButton>
 					<StyledButton onClick={handleReset}>reset</StyledButton>
-					<StyledButton onClick={handlePlusClick}>plus</StyledButton>
+					<StyledButton id='btn' ref={buttonRef} onClick={handlePlusClick}>
+						plus
+					</StyledButton>
 				</Flex>
 			</StyledCounter>
 		</FlexContainer>

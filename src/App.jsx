@@ -14,7 +14,7 @@ export const App = () => {
 		<>
 			<Header />
 			<Posts message={message} />
-			<Counter />
+			{/* <Counter /> */}
 		</>
 	)
 }

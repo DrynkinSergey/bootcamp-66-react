@@ -1,4 +1,4 @@
-import React, { Component, useCallback, useContext, useEffect, useState } from 'react'
+import React, { Component, useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { SearchForm } from './SearchForm'
 import { PostList } from './PostList'
 import s from './Posts.module.scss'
@@ -40,7 +40,15 @@ const Posts = ({ message }) => {
 		}
 	}, [query, skip])
 
+	const isFirstRender = useRef(true)
+
 	useEffect(() => {
+		if (isFirstRender.current) {
+			toast.success('Ми відмінили перший рендер')
+			isFirstRender.current = false
+			return
+		}
+
 		getData()
 	}, [getData])
 
