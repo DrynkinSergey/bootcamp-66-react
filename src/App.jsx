@@ -13,8 +13,8 @@ export const App = () => {
 	return (
 		<>
 			<Header />
-			<Posts message={message} />
-			{/* <Counter /> */}
+			{/* <Posts message={message} /> */}
+			<Counter />
 		</>
 	)
 }

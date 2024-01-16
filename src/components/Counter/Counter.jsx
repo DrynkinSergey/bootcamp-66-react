@@ -1,17 +1,44 @@
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useReducer, useRef, useState } from 'react'
 import { Flex, FlexContainer, StyledButton, StyledCounter } from './Counter.styled'
 import { toast } from 'react-toastify'
 
 export const Counter = () => {
-	const [counter, setCounter] = useState(0)
-	const [step, setStep] = useState(1)
-	const [stateCounter, setStateCounter] = useState(0)
+	const initialState = {
+		counter: 0,
+		step: 1,
+	}
+	const counterReducer = (state, action) => {
+		console.log(action)
+
+		switch (action.type) {
+			case 'INCREMENT':
+				return {
+					...state,
+					counter: state.counter + state.step,
+				}
+			case 'DECREMENT':
+				return {
+					...state,
+					counter: state.counter - state.step,
+				}
+			case 'RESET':
+				return initialState
+			case 'CHANGE_STEP':
+				return {
+					...state,
+					step: action.payload,
+				}
+			default:
+				return state
+		}
+	}
+	const [state, dispatch] = useReducer(counterReducer, initialState)
+	const { step, counter } = state
+
 	const renderRef = useRef(0)
 	useEffect(() => {
 		renderRef.current++
 		console.log('Render count:', renderRef.current)
-		// setStateCounter(prev => prev + 1)
-		// console.log('Render count:', stateCounter)
 	}, [])
 	const buttonRef = useRef(null)
 
@@ -24,26 +51,29 @@ export const Counter = () => {
 
 	// const result = calcHardValue()
 	const result = useMemo(() => {
-		return calcHardValue(step)
-	}, [step])
+		return calcHardValue()
+	}, [])
 	const handlePlusClick = () => {
-		setCounter(prev => prev + step)
+		// setCounter(prev => prev + step)
+		dispatch({ type: 'INCREMENT' })
 	}
 
 	const handleMinusClick = () => {
-		setCounter(prev => prev - step)
+		// setCounter(prev => prev - step)
+		dispatch({ type: 'DECREMENT' })
 	}
 
 	const handleReset = () => {
-		setCounter(0)
-		setStep(1)
+		dispatch({ type: 'RESET' })
+		// setCounter(0)
+		// setStep(1)
 	}
 	return (
 		<FlexContainer>
 			<StyledCounter>
 				<h2>Res:{result}</h2>
 				<h1>{counter}</h1>
-				<input value={step} onChange={e => setStep(+e.target.value)} />
+				<input value={step} onChange={e => dispatch({ type: 'CHANGE_STEP', payload: +e.target.value })} />
 				<Flex>
 					<StyledButton onClick={handleMinusClick}>minus</StyledButton>
 					<StyledButton onClick={handleReset}>reset</StyledButton>
