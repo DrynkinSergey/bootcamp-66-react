@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 export const Layout = ({ changeTheme }) => {
 	return (
-		<>
+		<Wrapper>
 			<StyledHeader>
 				<h1>Routing</h1>
 				<button onClick={changeTheme}>Change theme</button>
@@ -14,7 +14,7 @@ export const Layout = ({ changeTheme }) => {
 			<StyledOutletWrapper>
 				<Outlet />
 			</StyledOutletWrapper>
-		</>
+		</Wrapper>
 	)
 }
 const StyledHeader = styled.header`
@@ -35,3 +35,4 @@ const StyledOutletWrapper = styled.div`
 	color: ${props => props.theme.colors.second};
 	min-height: 100vh;
 `
+const Wrapper = styled.div``

@@ -16,8 +16,8 @@ const NavMenu = styled.nav`
 	display: flex;
 	gap: 20px;
 `
-const StyledLink = styled(NavLink)`
-	color: white;
+export const StyledLink = styled(NavLink)`
+	color: ${props => props.$color || 'white'};
 	font-size: calc((1vh + 1vw) * 1.5);
 	font-weight: bold;
 	text-decoration: none;
