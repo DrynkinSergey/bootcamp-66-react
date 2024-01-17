@@ -7,6 +7,7 @@ import Users from './pages/Users/Users'
 import { darkTheme, lightTheme } from './styles/theme'
 import { ThemeProvider } from 'styled-components'
 import { useState } from 'react'
+import NotFound from './pages/NotFound/NotFound'
 
 export const App = () => {
 	const [theme, setTheme] = useState('light')
@@ -23,6 +24,7 @@ export const App = () => {
 				</Route>
 
 				<Route path='/some' element={<h1>Hello</h1>} />
+				<Route path='*' element={<NotFound />} />
 			</Routes>
 		</ThemeProvider>
 	)
