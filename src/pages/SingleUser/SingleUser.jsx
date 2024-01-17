@@ -2,16 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Navigate, Outlet, useParams } from 'react-router-dom'
 import { fetchUserById } from '../../services/api'
 import { StyledLink } from '../../components/Navbar'
+import { useHttp } from '../../hooks/useHttp'
 
 const SingleUser = () => {
 	const { userId } = useParams()
-	const [user, setUser] = useState(null)
-	const [error, setError] = useState(null)
-	useEffect(() => {
-		fetchUserById(userId)
-			.then(res => setUser(res))
-			.catch(error => setError(error.message))
-	}, [userId])
+	const { data: user, setData: setUser, error } = useHttp(fetchUserById, userId)
 
 	if (error) {
 		return <h1>Error...</h1>

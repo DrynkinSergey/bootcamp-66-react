@@ -1,22 +1,19 @@
-import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { fetchPostsByUserId } from '../../services/api'
 import Modal from '../Modal/Modal'
 import { useModal } from '../../hooks/useModal'
+import { useHttp } from '../../hooks/useHttp'
 
 const UsersPosts = () => {
 	const { userId } = useParams()
 
 	const { isOpen, open, close } = useModal()
 
-	const [posts, setPosts] = useState([])
-	useEffect(() => {
-		fetchPostsByUserId(userId).then(res => setPosts(res))
-	}, [userId])
+	const { data: posts } = useHttp(fetchPostsByUserId, userId)
 	return (
 		<div>
 			<ul>
-				{posts.map(post => (
+				{posts?.map(post => (
 					<li onClick={open} key={post.id}>
 						{post.title}
 					</li>
