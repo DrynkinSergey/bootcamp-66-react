@@ -1,19 +1,24 @@
 import { Link, Navigate, Route, Routes } from 'react-router-dom'
 import './index.css'
 import { Home } from './pages/Home/Home'
-import About from './pages/About/About'
+// import About from './pages/About/About'
 import { Layout } from './components/Layout'
-import Users from './pages/Users/Users'
+// import Users from './pages/Users/Users'
 import { darkTheme, lightTheme } from './styles/theme'
 import { ThemeProvider } from 'styled-components'
-import { useState } from 'react'
+import { lazy, useState } from 'react'
 import NotFound from './pages/NotFound/NotFound'
 import SingleUser from './pages/SingleUser/SingleUser'
-import AboutAim from './components/NestedRoutes/AboutAim'
-import AboutCompany from './components/NestedRoutes/AboutCompany'
+// import AboutAim from './components/NestedRoutes/AboutAim'
+// import AboutCompany from './components/NestedRoutes/AboutCompany'
 import UsersPosts from './components/NestedRoutes/UsersPosts'
 import Posts from './pages/Posts/Posts'
 import SinglePost from './pages/SinglePost/SinglePost'
+
+const About = lazy(() => import('./pages/About/About'))
+const Users = lazy(() => import('./pages/Users/Users'))
+const AboutAim = lazy(() => import('./components/NestedRoutes/AboutAim'))
+const AboutCompany = lazy(() => import('./components/NestedRoutes/AboutCompany'))
 
 export const App = () => {
 	const [theme, setTheme] = useState('light')
