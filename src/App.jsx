@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Navigate, Route, Routes } from 'react-router-dom'
 import './index.css'
 import { Home } from './pages/Home/Home'
 import About from './pages/About/About'
@@ -12,6 +12,8 @@ import SingleUser from './pages/SingleUser/SingleUser'
 import AboutAim from './components/NestedRoutes/AboutAim'
 import AboutCompany from './components/NestedRoutes/AboutCompany'
 import UsersPosts from './components/NestedRoutes/UsersPosts'
+import Posts from './pages/Posts/Posts'
+import SinglePost from './pages/SinglePost/SinglePost'
 
 export const App = () => {
 	const [theme, setTheme] = useState('light')
@@ -32,6 +34,8 @@ export const App = () => {
 					</Route>
 
 					<Route path='users' element={<Users />} />
+					<Route path='posts' element={<Posts />} />
+					<Route path='posts/:postId' element={<SinglePost />} />
 
 					<Route path='users/:userId' element={<SingleUser />}>
 						<Route path='info' element={<h2>User info</h2>} />
@@ -41,6 +45,7 @@ export const App = () => {
 				<Route path='/some' element={<h1>Hello</h1>} />
 
 				<Route path='*' element={<NotFound />} />
+				<Route path='/about-us' element={<Navigate to='/about' />} />
 				<Route path='/404' element={<NotFound />} />
 			</Routes>
 		</ThemeProvider>

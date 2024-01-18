@@ -8,6 +8,7 @@ const Navbar = () => {
 			<StyledLink to='/'>Home</StyledLink>
 			<StyledLink to='/about'>About</StyledLink>
 			<StyledLink to='/users'>Users</StyledLink>
+			<StyledLink to='/posts'>Posts</StyledLink>
 		</NavMenu>
 	)
 }

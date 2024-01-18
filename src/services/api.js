@@ -5,9 +5,15 @@ axios.defaults.baseURL = 'https://dummyjson.com/'
 export const fetchPosts = async configParams => {
 	const { data } = await axios.get('posts', {
 		params: {
+			limit: 100,
 			...configParams,
 		},
 	})
+	return data.posts
+}
+
+export const fetchPostById = async id => {
+	const { data } = await axios.get(`posts/${id}`)
 	return data
 }
 
@@ -17,7 +23,7 @@ export const fetchPostsByQuery = async configParams => {
 			...configParams,
 		},
 	})
-	return data
+	return data.posts
 }
 
 export const fetchUsers = async () => {
