@@ -14,6 +14,8 @@ import SingleUser from './pages/SingleUser/SingleUser'
 import UsersPosts from './components/NestedRoutes/UsersPosts'
 import Posts from './pages/Posts/Posts'
 import SinglePost from './pages/SinglePost/SinglePost'
+import { Login } from './pages/Login/Login'
+import { LoginWithoutRHF } from './pages/Login/LoginWithoutRHF'
 
 const About = lazy(() => import('./pages/About/About'))
 const Users = lazy(() => import('./pages/Users/Users'))
@@ -50,6 +52,8 @@ export const App = () => {
 				<Route path='/some' element={<h1>Hello</h1>} />
 
 				<Route path='*' element={<NotFound />} />
+				{/* <Route path='/login' element={<Login />} /> */}
+				<Route path='/login' element={<LoginWithoutRHF />} />
 				<Route path='/about-us' element={<Navigate to='/about' />} />
 				<Route path='/404' element={<NotFound />} />
 			</Routes>

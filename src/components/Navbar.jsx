@@ -9,6 +9,7 @@ const Navbar = () => {
 			<StyledLink to='/about'>About</StyledLink>
 			<StyledLink to='/users'>Users</StyledLink>
 			<StyledLink to='/posts'>Posts</StyledLink>
+			<StyledLink to='/login'>Login</StyledLink>
 		</NavMenu>
 	)
 }
