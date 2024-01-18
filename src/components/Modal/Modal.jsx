@@ -1,5 +1,8 @@
 import React, { useCallback, useEffect } from 'react'
+import ReactDOM from 'react-dom'
 import { CloseButton, ModalContent, ModalWrapper } from './Modal.styled'
+
+const modalRoot = document.querySelector('#modalRoot')
 
 const Modal = ({ children, close, title }) => {
 	// rd01x
@@ -30,7 +33,7 @@ const Modal = ({ children, close, title }) => {
 		}
 	}
 
-	return (
+	return ReactDOM.createPortal(
 		<ModalWrapper onClick={handleClickOnBackdrop}>
 			<ModalContent>
 				<>
@@ -40,7 +43,8 @@ const Modal = ({ children, close, title }) => {
 				<CloseButton onClick={close}>×</CloseButton>
 				{children}
 			</ModalContent>
-		</ModalWrapper>
+		</ModalWrapper>,
+		modalRoot
 	)
 }
 

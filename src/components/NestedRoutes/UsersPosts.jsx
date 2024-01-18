@@ -21,7 +21,7 @@ const UsersPosts = () => {
 			</ul>
 			{isOpen && (
 				<Modal close={close}>
-					<h2>asdfadsfd</h2>
+					<h2>Modal from portal</h2>
 				</Modal>
 			)}
 		</div>
