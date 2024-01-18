@@ -52,8 +52,8 @@ export const App = () => {
 				<Route path='/some' element={<h1>Hello</h1>} />
 
 				<Route path='*' element={<NotFound />} />
-				{/* <Route path='/login' element={<Login />} /> */}
-				<Route path='/login' element={<LoginWithoutRHF />} />
+				<Route path='/login' element={<Login />} />
+				{/* <Route path='/login' element={<LoginWithoutRHF />} /> */}
 				<Route path='/about-us' element={<Navigate to='/about' />} />
 				<Route path='/404' element={<NotFound />} />
 			</Routes>
