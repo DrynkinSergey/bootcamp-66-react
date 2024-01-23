@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Flex, FlexContainer, StyledButton, StyledCounter } from './Counter.styled'
-import { actions, decrement, increment, reset, setStep } from './../../redux/counter/actions'
 import { selectCounter, selectStep } from '../../redux/counter/selectors'
+import { increment, decrement, reset, setStep } from '../../redux/counter/slice'
 export const Counter = () => {
 	const counter = useSelector(selectCounter)
 	const step = useSelector(selectStep)
@@ -9,7 +9,7 @@ export const Counter = () => {
 	const dispatch = useDispatch()
 
 	const handlePlusClick = () => {
-		dispatch(actions.increment())
+		dispatch(increment())
 	}
 
 	const handleMinusClick = () => {
