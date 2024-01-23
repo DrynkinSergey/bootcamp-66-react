@@ -1,5 +1,0 @@
-export const DELETE_TODO = 'deleteTodo'
-export const ADD_TODO = 'addTodo'
-export const TOGGLE_TODO = 'toggleTodo'
-export const EDIT_TODO = 'editTodo'
-export const CHANGE_FILTER = 'changeFilter'
