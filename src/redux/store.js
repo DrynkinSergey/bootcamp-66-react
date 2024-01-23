@@ -4,11 +4,7 @@ import { devToolsEnhancer } from '@redux-devtools/extension'
 import { todosReducer } from './todos/reducer'
 
 const enhancer = devToolsEnhancer()
-//state.counter
-//state.counter.counter
-//state.counter.step
-//state.todos.items
-//state.todos.filter
+
 const rootReducer = combineReducers({
 	countData: counterReducer,
 	todos: todosReducer,
