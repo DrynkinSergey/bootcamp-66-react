@@ -1,4 +1,4 @@
-import { createSlice, isAnyOf, nanoid } from '@reduxjs/toolkit'
+import { createSlice, isAnyOf } from '@reduxjs/toolkit'
 import { addTodoThunk, deleteTodoThunk, fetchDataThunk, toggleTodoThunk } from './operations'
 
 const initialState = {

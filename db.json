@@ -1,0 +1,15 @@
+{
+	"books": [
+		{
+			"id": "1",
+			"title": "Eloquent JavaScript, Third Edition",
+			"author": "Marijn Haverbeke"
+		},
+		{
+			"id": "2",
+			"title": "Practical Modern JavaScript",
+			"author": "Nicolas Bevacqua"
+		}
+	],
+	"todos": []
+}

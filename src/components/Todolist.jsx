@@ -1,17 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
-import { nanoid } from 'nanoid'
 import { Filter } from './Filter'
-import {
-	addTodo,
-	deleteTodo,
-	editTodo,
-	selectFilter,
-	selectIsLoading,
-	selectTodos,
-	toggleTodo,
-} from '../redux/todos/slice'
+import { editTodo, selectFilter, selectIsLoading, selectTodos } from '../redux/todos/slice'
 import { addTodoThunk, deleteTodoThunk, fetchDataThunk, toggleTodoThunk } from '../redux/todos/operations'
 
 export const Todolist = () => {
@@ -38,7 +29,6 @@ export const Todolist = () => {
 	const { register, handleSubmit, reset } = useForm()
 
 	const submit = data => {
-		// const newTodo = { ...data, id: nanoid(), completed: false }
 		dispatch(addTodoThunk(data))
 		reset()
 	}
