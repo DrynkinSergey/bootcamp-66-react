@@ -34,7 +34,7 @@ export const Todolist = () => {
 	return (
 		<div>
 			<form onSubmit={handleSubmit(submit)}>
-				<input {...register('title')} type='text' />
+				<input {...register('title', { required: true })} type='text' />
 				<button>Add todo</button>
 			</form>
 			<hr />
