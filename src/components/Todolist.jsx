@@ -33,7 +33,9 @@ export const Todolist = () => {
 			<hr />
 			<input type='text' onChange={e => dispatch(setTest(e.target.value))} />
 			<Filter />
-			<h1>We have {uncompletedTodos} uncompleted todos</h1>
+			<h1 className='text-center font-bold text-4xl underline text-red-500 border-8 border-black w-1/2 mx-auto px-4 py-8 hover:text-green-500 transition duration-500 '>
+				We have {uncompletedTodos} uncompleted todos
+			</h1>
 			<ul>
 				{todos.map(item => (
 					<li key={item.id}>
