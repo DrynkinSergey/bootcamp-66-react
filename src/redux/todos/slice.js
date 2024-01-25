@@ -6,12 +6,16 @@ const initialState = {
 	filter: 'all',
 	loading: false,
 	error: null,
+	testValue: '',
 }
 
 const slice = createSlice({
 	name: 'tasks',
 	initialState,
 	reducers: {
+		setTest: (state, action) => {
+			state.testValue = action.payload
+		},
 		editTodo: (state, { payload }) => {
 			const item = state.items.find(item => item.id === payload.id)
 			item.title = payload.text
@@ -62,5 +66,5 @@ const slice = createSlice({
 })
 
 export const todosReducer = slice.reducer
-export const { editTodo, changeFilter } = slice.actions
+export const { editTodo, changeFilter, setTest } = slice.actions
 export const { selectFilter, selectTodos, selectIsLoading, selectIsError } = slice.selectors

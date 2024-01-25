@@ -1,30 +1,21 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import { Filter } from './Filter'
-import { editTodo, selectFilter, selectIsLoading, selectTodos } from '../redux/todos/slice'
+import { editTodo, selectIsLoading, setTest } from '../redux/todos/slice'
 import { addTodoThunk, deleteTodoThunk, fetchDataThunk, toggleTodoThunk } from '../redux/todos/operations'
+import { selectFilter, selectFilteredDataMemo, selectUncompletedTodosMemo } from '../redux/todos/selectors'
 
 export const Todolist = () => {
-	const todos = useSelector(selectTodos)
+	const todos = useSelector(selectFilteredDataMemo)
 	const filter = useSelector(selectFilter)
+	const uncompletedTodos = useSelector(selectUncompletedTodosMemo)
 	const loading = useSelector(selectIsLoading)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
 		dispatch(fetchDataThunk())
 	}, [dispatch])
-
-	const getFilteredData = () => {
-		switch (filter) {
-			case 'active':
-				return todos.filter(item => !item.completed)
-			case 'completed':
-				return todos.filter(item => item.completed)
-			default:
-				return todos
-		}
-	}
 
 	const { register, handleSubmit, reset } = useForm()
 
@@ -33,7 +24,6 @@ export const Todolist = () => {
 		reset()
 	}
 
-	const filteredTodos = getFilteredData()
 	return (
 		<div>
 			<form onSubmit={handleSubmit(submit)}>
@@ -41,9 +31,11 @@ export const Todolist = () => {
 				<button>Add todo</button>
 			</form>
 			<hr />
+			<input type='text' onChange={e => dispatch(setTest(e.target.value))} />
 			<Filter />
+			<h1>We have {uncompletedTodos} uncompleted todos</h1>
 			<ul>
-				{filteredTodos.map(item => (
+				{todos.map(item => (
 					<li key={item.id}>
 						<input checked={item.completed} type='checkbox' onChange={() => dispatch(toggleTodoThunk(item))} />
 						<span>{item.title}</span>
