@@ -1,14 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
-import { addArticle } from '../../redux/articles/slice'
-import { nanoid } from '@reduxjs/toolkit'
+import { addArticleThunk } from '../../redux/articles/operations'
 
 export const AddForm = () => {
 	const dispatch = useDispatch()
 	const { register, handleSubmit, reset } = useForm()
 	const submit = data => {
-		dispatch(addArticle({ ...data, id: nanoid() }))
+		dispatch(addArticleThunk({ ...data }))
 		reset()
 	}
 	return (

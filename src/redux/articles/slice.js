@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { addArticleThunk, fetchArticlesThunk } from './operations'
 
 const initialState = {
 	items: [],
@@ -7,13 +8,14 @@ const initialState = {
 const slice = createSlice({
 	name: 'articles',
 	initialState,
-	reducers: {
-		addArticle: (state, action) => {
-			state.items.push(action.payload)
-		},
-		deleteArticle: (state, action) => {
-			state.items = state.items.filter(item => item.id !== action.payload)
-		},
+
+	extraReducers: builder => {
+		builder.addCase(fetchArticlesThunk.fulfilled, (state, action) => {
+			state.items = action.payload
+		})
+		// .addCase(addArticleThunk.fulfilled, (state, action) => {
+		// 	state.items.push(action.payload)
+		// })
 	},
 	selectors: {
 		selectArticles: state => state.items,
@@ -21,5 +23,4 @@ const slice = createSlice({
 })
 
 export const articlesReducer = slice.reducer
-export const { addArticle, deleteArticle } = slice.actions
 export const { selectArticles } = slice.selectors

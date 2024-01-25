@@ -1,15 +1,42 @@
 {
-	"books": [
-		{
-			"id": "1",
-			"title": "Eloquent JavaScript, Third Edition",
-			"author": "Marijn Haverbeke"
-		},
-		{
-			"id": "2",
-			"title": "Practical Modern JavaScript",
-			"author": "Nicolas Bevacqua"
-		}
-	],
-	"todos": []
+  "books": [
+    {
+      "id": "1",
+      "title": "Eloquent JavaScript, Third Edition",
+      "author": "Marijn Haverbeke"
+    },
+    {
+      "id": "2",
+      "title": "Practical Modern JavaScript",
+      "author": "Nicolas Bevacqua"
+    }
+  ],
+  "todos": [],
+  "articles": [
+    {
+      "id": "12312312",
+      "title": "Practical Modern JavaScript",
+      "author": "Nicolas Bevacqua",
+      "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur exercitationem reiciendis eaque. Aperiam a aliquam pariatur, ea, odit dicta tempora natus voluptatem provident inventore eveniet magni iure laboriosam esse harum."
+    },
+    {
+      "id": "b0f8",
+      "title": "123",
+      "body": "",
+      "author": "Olena"
+    },
+    {
+      "id": "71f6",
+      "title": "1123123",
+      "body": "",
+      "author": "Sergey"
+    },
+    {
+      "id": "4648",
+      "title": "12312313123",
+      "body": "",
+      "author": "Olena"
+    }
+  ],
+  "users": []
 }
