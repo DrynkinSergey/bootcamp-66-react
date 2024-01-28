@@ -17,7 +17,7 @@ export const fetchDataThunk = createAsyncThunk('todos/fetchAll', async (_, thunk
 
 export const deleteTodoThunk = createAsyncThunk('todos/deleteOne', async (id, thunkAPI) => {
 	try {
-		const { data } = await axios.delete(`todos1/${id}`)
+		const { data } = await axios.delete(`todos/${id}`)
 		return data
 	} catch (error) {
 		return thunkAPI.rejectWithValue(error.message)

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://localhost:7777/'
+// axios.defaults.baseURL = 'http://localhost:7777/'
 
 export const fetchArticlesThunk = createAsyncThunk('fetchAll', async (_, thunkApi) => {
 	try {
