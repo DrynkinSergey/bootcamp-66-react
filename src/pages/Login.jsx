@@ -1,10 +1,13 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
+import { loginThunk } from '../redux/auth/operations'
 
 export const Login = () => {
 	const { register, reset, handleSubmit } = useForm()
+	const dispatch = useDispatch()
 	const submit = data => {
-		console.log(data)
+		dispatch(loginThunk(data))
 		reset()
 	}
 	return (

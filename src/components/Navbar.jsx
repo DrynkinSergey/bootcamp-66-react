@@ -1,7 +1,12 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
+import { selectIsLoggedIn } from '../redux/auth/slice'
+import { ProfileDetails } from './ProfileDetails'
+import { AuthDetails } from './AuthDetails'
 
 export const Navbar = () => {
+	const isLoggedIn = useSelector(selectIsLoggedIn)
 	return (
 		<div className='navbar bg-blue-700 text-white font-bold'>
 			<div className='flex-1'>
@@ -14,19 +19,7 @@ export const Navbar = () => {
 					<li>
 						<NavLink to='/todos'>Todos</NavLink>
 					</li>
-					<li>
-						<details className='px-4'>
-							<summary>Auth</summary>
-							<ul className='p-2 bg-base-100 text-black rounded-t-none'>
-								<li>
-									<Link to='/login'>Login</Link>
-								</li>
-								<li>
-									<Link to='/register'>Register</Link>
-								</li>
-							</ul>
-						</details>
-					</li>
+					<li>{isLoggedIn ? <ProfileDetails /> : <AuthDetails />}</li>
 				</ul>
 			</div>
 		</div>
