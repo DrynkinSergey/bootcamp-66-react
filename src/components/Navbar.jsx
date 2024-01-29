@@ -17,6 +17,9 @@ export const Navbar = () => {
 			<div className='flex-none'>
 				<ul className='menu menu-horizontal px-1'>
 					<li>
+						<NavLink to='/articles'>Articles</NavLink>
+					</li>
+					<li>
 						<NavLink to='/todos'>Todos</NavLink>
 					</li>
 					<li>{isLoggedIn ? <ProfileDetails /> : <AuthDetails />}</li>
