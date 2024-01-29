@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Todolist } from './components/Todos/Todolist'
 import { Route, Routes } from 'react-router-dom'
 import { TodoPage } from './pages/TodoPage'
@@ -9,8 +9,14 @@ import { Register } from './pages/Register'
 import { PublicRoute } from './routes/PublicRoute'
 import { PrivateRoute } from './routes/PrivateRoute'
 import { Articles } from './components/Articles/Articles'
+import { useDispatch } from 'react-redux'
+import { refreshThunk } from './redux/auth/operations'
 
 export const App = () => {
+	const dispatch = useDispatch()
+	useEffect(() => {
+		dispatch(refreshThunk())
+	}, [dispatch])
 	return (
 		<Routes>
 			<Route path='/' element={<Layout />}>
