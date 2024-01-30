@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { schema } from '../schemas/registerSchema'
+import { Input, PasswordInput } from '../components/Forms/Input'
 
 export const Yup = () => {
 	const {
@@ -29,51 +30,34 @@ export const Yup = () => {
 				</div>
 				<div className='card shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
 					<form onSubmit={handleSubmit(submit)} className='card-body relative'>
-						<div className='form-control'>
-							<label className='label'>
-								<span className='label-text'>Name</span>
-							</label>
-							<input {...register('name')} placeholder='Enter your name' className='input input-bordered' />
-							<p className='px-2 pt-1 text-red-500'>{errors.name?.message}</p>
-						</div>
-						<div className='form-control'>
-							<label className='label'>
-								<span className='label-text'>Email</span>
-							</label>
-							<input {...register('email')} placeholder='email' className='input input-bordered' />
-							<p className='px-2 pt-1 text-red-500'>{errors.email?.message}</p>
-						</div>
-						<div className='form-control'>
-							<label className='label'>
-								<span className='label-text'>Age</span>
-							</label>
-							<input {...register('age')} type='number' placeholder='Age' className='input input-bordered' />
-							<p className='px-2 pt-1 text-red-500'>{errors.age?.message}</p>
-						</div>
-						<div className='form-control'>
-							<label className='label'>
-								<span className='label-text'>Password</span>
-							</label>
-							<input
-								{...register('password')}
-								type='password'
-								placeholder='password'
-								className='input input-bordered'
-							/>
-							<p className='px-2 pt-1 text-red-500'>{errors.password?.message}</p>
-						</div>
-						<div className='form-control'>
-							<label className='label'>
-								<span className='label-text'>Confirm Password</span>
-							</label>
-							<input
-								{...register('confirmPassword')}
-								type='password'
-								placeholder='password'
-								className='input input-bordered'
-							/>
-							<p className='px-2 pt-1 text-red-500'>{errors.confirmPassword?.message}</p>
-						</div>
+						<Input register={register} name='name' placeholder='Enter your name' errors={errors} label='Name' />
+						<Input register={register} name='email' placeholder='Enter your email' errors={errors} label='Email' />
+						<Input register={register} name='bio' placeholder='Enter your bio' errors={errors} label='User bio' />
+						<Input
+							register={register}
+							name='age'
+							placeholder='Enter your Age'
+							errors={errors}
+							label='Age'
+							type='number'
+						/>
+						<Input
+							register={register}
+							type='password'
+							name='password'
+							placeholder='Enter the pass'
+							label='Password'
+							errors={errors}
+						/>
+						<Input
+							register={register}
+							type='password'
+							name='confirmPassword'
+							placeholder='Enter the pass'
+							label='Confirm Password'
+							errors={errors}
+						/>
+
 						<div className='form-control mt-6'>
 							<button className='btn btn-primary'>Register</button>
 						</div>
