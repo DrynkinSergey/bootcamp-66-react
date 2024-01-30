@@ -13,7 +13,7 @@ export const AddTodo = () => {
 	return (
 		<form className='flex flex-col w-1/2 mx-auto gap-2 py-5' onSubmit={handleSubmit(submit)}>
 			<input
-				{...register('title', { required: true })}
+				{...register('text', { required: true })}
 				type='text'
 				className='border-2 px-3 py-1 border-black rounded-md shadow-md'
 			/>

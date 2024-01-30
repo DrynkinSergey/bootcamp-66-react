@@ -1,14 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { registerThunk } from '../redux/auth/operations'
+import { toast } from 'react-toastify'
+import { selectIsError } from '../redux/auth/slice'
 
 export const Register = () => {
 	const { register, reset, handleSubmit } = useForm()
+	const [wasReq, setWasReq] = useState(false)
+	const isError = useSelector(selectIsError)
 	const dispatch = useDispatch()
 	const submit = data => {
 		console.log(data)
+		setWasReq(true)
 		dispatch(registerThunk(data))
+			.unwrap()
+			.then()
+			.catch(err => toast.warn('Register is not seccess'))
 		reset()
 	}
 	return (
@@ -23,7 +31,12 @@ export const Register = () => {
 					</p>
 				</div>
 				<div className='card shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
-					<form onSubmit={handleSubmit(submit)} className='card-body'>
+					<form onSubmit={handleSubmit(submit)} className='card-body relative'>
+						{wasReq && isError && (
+							<div className='bg-red-400 py-4 px-2 absolute top-[-20px] left-[12%] text-center rounded-md text-white font-bold '>
+								Try again... Something went wrong!
+							</div>
+						)}
 						<div className='form-control'>
 							<label className='label'>
 								<span className='label-text'>Name</span>
