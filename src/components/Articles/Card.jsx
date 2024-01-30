@@ -1,6 +1,5 @@
-import React from 'react'
 import { useDispatch } from 'react-redux'
-import { deleteArticle } from '../../redux/articles/slice'
+
 import { deleteArticleThunk } from '../../redux/articles/operations'
 
 export const Card = ({ id, title, body, author }) => {

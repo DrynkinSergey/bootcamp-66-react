@@ -1,6 +1,7 @@
-import React from 'react'
-import { Card } from './Card'
 import { useSelector } from 'react-redux'
+
+import { Card } from './Card'
+
 import { selectArticles } from '../../redux/articles/slice'
 
 export const List = () => {

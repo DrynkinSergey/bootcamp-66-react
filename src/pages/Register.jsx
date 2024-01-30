@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { registerThunk } from '../redux/auth/operations'
 import { toast } from 'react-toastify'
+
+import { registerThunk } from '../redux/auth/operations'
 import { selectIsError } from '../redux/auth/slice'
 
 export const Register = () => {

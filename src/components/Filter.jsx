@@ -1,5 +1,5 @@
-import React from 'react'
 import { useDispatch } from 'react-redux'
+
 import { changeFilter } from '../redux/todos/slice'
 
 export const Filter = () => {

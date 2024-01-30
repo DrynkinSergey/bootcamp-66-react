@@ -1,9 +1,10 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
-import { selectIsLoggedIn } from '../redux/auth/slice'
+
 import { ProfileDetails } from './ProfileDetails'
 import { AuthDetails } from './AuthDetails'
+import { selectIsLoggedIn } from '../redux/auth'
 
 export const Navbar = () => {
 	const isLoggedIn = useSelector(selectIsLoggedIn)
@@ -18,6 +19,9 @@ export const Navbar = () => {
 				<ul className='menu menu-horizontal px-1'>
 					<li>
 						<NavLink to='/articles'>Articles</NavLink>
+					</li>
+					<li>
+						<NavLink to='/yup'>Yup</NavLink>
 					</li>
 					<li>
 						<NavLink to='/todos'>Todos</NavLink>
